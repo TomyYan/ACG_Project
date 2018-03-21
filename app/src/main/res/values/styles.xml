@@ -13,7 +13,7 @@
         <item name="android:layout_weight">1</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:textColor">@drawable/rb_focus_color</item>
+        <item name="android:textColor">@drawable/focusColor</item>
         <item name="android:textSize">12sp</item>
     </style>
 

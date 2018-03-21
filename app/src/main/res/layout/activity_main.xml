@@ -14,25 +14,25 @@
             android:id="@+id/rb_chat"
             android:checked="true"
             android:text="@string/chat"
-            android:drawableTop="@drawable/rb_chat_selector"
+            android:drawableTop="@drawable/aView"
             style="@style/style_RadioButton"/>
 
         <RadioButton
             android:id="@+id/rb_contacts"
             android:text="@string/contacts"
-            android:drawableTop="@drawable/rb_contacts_selector"
+            android:drawableTop="@drawable/cView"
             style="@style/style_RadioButton"/>
 
         <RadioButton
             android:id="@+id/rb_discovery"
             android:text="@string/discovery"
-            android:drawableTop="@drawable/rb_discovery_selector"
+            android:drawableTop="@drawable/gView"
             style="@style/style_RadioButton"/>
 
         <RadioButton
             android:id="@+id/rb_me"
             android:text="@string/me"
-            android:drawableTop="@drawable/rb_me_selector"
+            android:drawableTop="@drawable/meView"
             style="@style/style_RadioButton"/>
     </RadioGroup>
 
