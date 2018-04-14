@@ -24,7 +24,8 @@ import org.json.JSONObject;
 public class Login_in extends Activity implements View.OnClickListener{
 
     private EditText Account_Edit,Keyword_Edit;
-    private Button Login_in_Button;
+    private Button Login_in_Button,forgetPassword,register;
+    private String address=Domain.Server_Address+"login";
     private String account,keyword;
     private Handler handler=new Handler(){
         @Override
@@ -32,7 +33,6 @@ public class Login_in extends Activity implements View.OnClickListener{
             switch(msg.obj.toString()) {
                 case "ok":
                     Intent intent=new Intent();
-                    intent.putExtra("user",account);
                     intent.setClass(Login_in.this,MainActivity.class);
                     Login_in.this.startActivity(intent);
                     finish();
@@ -56,7 +56,11 @@ public class Login_in extends Activity implements View.OnClickListener{
         Account_Edit=(EditText)findViewById(R.id.account_Edit);
         Keyword_Edit=(EditText)findViewById(R.id.keyword_Edit);
         Login_in_Button=(Button)findViewById(R.id.login_in_button);
+        forgetPassword=(Button)findViewById(R.id.forget_keyword);
+        register=(Button)findViewById(R.id.register);
         Login_in_Button.setOnClickListener(this);
+        forgetPassword.setOnClickListener(this);
+        register.setOnClickListener(this);
     }
 
     @Override
@@ -69,6 +73,16 @@ public class Login_in extends Activity implements View.OnClickListener{
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                break;
+            case R.id.forget_keyword:
+                Intent intentForget=new Intent();
+                intentForget.setClass(Login_in.this,ForgetPassword.class);
+                Login_in.this.startActivity(intentForget);
+                break;
+            case R.id.register:
+                Intent intentRegister=new Intent();
+                intentRegister.setClass(Login_in.this,Register.class);
+                Login_in.this.startActivity(intentRegister);
                 break;
             default:
                 break;
@@ -85,12 +99,15 @@ public class Login_in extends Activity implements View.OnClickListener{
         requestMsg.put("operation","login_in");
         requestMsg.put("account",account);
         requestMsg.put("keyword",keyword);
-        HttpUnit.postHttpRequest(requestMsg, Domain.Server_Address, new HttpCallbackListener() {
+        HttpUnit.postHttpRequest(requestMsg, address, new HttpCallbackListener() {
             @Override
             public void onFinish(String response) throws JSONException {
                 JSONObject responseMsg=new JSONObject(response);
                 //处理登录返回信息
                 String result=responseMsg.getString("result");
+
+                Domain.setUserId(responseMsg.getInt("userId"));
+
                 System.out.println(result);
                 //System.out.println(responseMsg.toString());
                 Message msg=new Message();
@@ -100,6 +117,13 @@ public class Login_in extends Activity implements View.OnClickListener{
 
             @Override
             public void onError(Exception e) {
+                //测试用
+                /*
+                Message msg=new Message();
+                msg.obj="ok";
+                handler.sendMessage(msg);
+                */
+                //
                 Log.e("Login_in.java","Connect_Error");
             }
         });

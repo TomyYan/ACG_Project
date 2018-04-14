@@ -1,5 +1,6 @@
 package com.example.tomy.acg_project.view;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,8 @@ import java.util.List;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import com.example.tomy.acg_project.Fragment.AFragment;
@@ -17,22 +20,27 @@ import com.example.tomy.acg_project.Fragment.GFragment;
 import com.example.tomy.acg_project.Fragment.MeFragment;
 import com.example.tomy.acg_project.R;
 import com.example.tomy.acg_project.adapter.MyFragmentPagerAdapter;
+import com.example.tomy.acg_project.impl.MainViewAction;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener,MainViewAction{
 
     private ViewPager viewPager;
     private RadioGroup radioGroup;
     private RadioButton rbChat, rbContacts, rbDiscovery, rbMe;
-    private String user;
+    //private String user;
+    private ImageButton addNewArticle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent=getIntent();
-        user=intent.getStringExtra("user");
+        //Intent intent=getIntent();
+        //user=intent.getStringExtra("user");
         initView();
+
+        addNewArticle=(ImageButton)findViewById(R.id.add);
+        addNewArticle.setOnClickListener(this);
     }
 
     private void initView() {
@@ -116,6 +124,28 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.add:
+                Intent intentToAddArticle=new Intent();
+                //intentToAddArticle.putExtra("user",user);
+                intentToAddArticle.setClass(MainActivity.this,AddArticle.class);
+                MainActivity.this.startActivity(intentToAddArticle);
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void GotoOtherView(Activity activity) {
+        Intent intentMain=new Intent();
+        //intentMain.putExtra("user",user);
+        intentMain.setClass(MainActivity.this,activity.getClass());
+        MainActivity.this.startActivity(intentMain);
     }
 }
 

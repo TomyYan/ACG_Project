@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <!--<TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" android:id="@+id/item_a"/>-->
+
+
+    <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp" app:srcCompat="@mipmap/ic_launcher"
+            android:layout_alignParentTop="true" android:layout_alignParentStart="true"
+            android:background="@drawable/shape"
+            android:layout_marginStart="15dp" android:layout_marginTop="10dp"
+            android:id="@+id/imageShow"/>
+    <TextView
+            android:text="Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:id="@+id/authorName" android:layout_alignTop="@+id/imageShow"
+            android:layout_toEndOf="@+id/imageShow" android:layout_marginTop="15dp"/>
+    <TextView
+            android:text="发表内容展示"
+            android:paddingTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ViewOfAuthor"
+            android:layout_marginEnd="15dp"
+            android:layout_below="@+id/imageShow"
+            android:layout_alignStart="@+id/imageShow"/>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_below="@+id/ViewOfAuthor"
+            android:layout_alignLeft="@+id/ViewOfAuthor"
+            android:layout_alignRight="@+id/ViewOfAuthor"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <ImageButton
+                android:background="@color/colorAccent"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/good"/>
+        <TextView
+                android:background="@color/colorAccent"
+                android:id="@+id/thumbsUpNum"
+                android:layout_weight="1"
+                android:text="0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        <ImageButton
+                android:background="@color/colorAccent"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/bad"/>
+        <TextView
+                android:background="@color/colorAccent"
+                android:id="@+id/thumbsDownNum"
+                android:layout_weight="1"
+                android:text="0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        <ImageButton
+                android:background="@color/colorAccent"
+                android:layout_width="wrap_content"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/comment"/>
+
+    </LinearLayout>
+</RelativeLayout>

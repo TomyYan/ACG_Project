@@ -20,9 +20,11 @@
         </activity>
         <activity
                 android:label="ACG+"
-
                 android:name=".view.MainActivity">
         </activity>
+        <activity android:name=".view.AddArticle"></activity>
+        <activity android:name=".view.Register"></activity>
+        <activity android:name=".view.ForgetPassword"></activity>
 
     </application>
 

@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
     android:layout_height="match_parent">
+
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -14,25 +15,25 @@
             android:id="@+id/rb_chat"
             android:checked="true"
             android:text="@string/chat"
-            android:drawableTop="@drawable/aView"
+            android:drawableTop="@drawable/a_view"
             style="@style/style_RadioButton"/>
 
         <RadioButton
             android:id="@+id/rb_contacts"
             android:text="@string/contacts"
-            android:drawableTop="@drawable/cView"
+            android:drawableTop="@drawable/c_view"
             style="@style/style_RadioButton"/>
 
         <RadioButton
             android:id="@+id/rb_discovery"
             android:text="@string/discovery"
-            android:drawableTop="@drawable/gView"
+            android:drawableTop="@drawable/g_view"
             style="@style/style_RadioButton"/>
 
         <RadioButton
             android:id="@+id/rb_me"
             android:text="@string/me"
-            android:drawableTop="@drawable/meView"
+            android:drawableTop="@drawable/me_view"
             style="@style/style_RadioButton"/>
     </RadioGroup>
 
@@ -41,4 +42,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/radioGroup" />
+    <ImageButton
+            android:layout_alignParentBottom="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="25dp"
+            android:background="#00000000"
+            app:srcCompat="@mipmap/add"
+            android:id="@+id/add"/>
 </RelativeLayout>
