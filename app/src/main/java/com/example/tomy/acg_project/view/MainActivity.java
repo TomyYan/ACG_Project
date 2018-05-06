@@ -1,6 +1,5 @@
 package com.example.tomy.acg_project.view;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,9 +19,8 @@ import com.example.tomy.acg_project.Fragment.GFragment;
 import com.example.tomy.acg_project.Fragment.MeFragment;
 import com.example.tomy.acg_project.R;
 import com.example.tomy.acg_project.adapter.MyFragmentPagerAdapter;
-import com.example.tomy.acg_project.impl.MainViewAction;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener,MainViewAction{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private ViewPager viewPager;
     private RadioGroup radioGroup;
@@ -35,8 +33,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Intent intent=getIntent();
-        //user=intent.getStringExtra("user");
         initView();
 
         addNewArticle=(ImageButton)findViewById(R.id.add);
@@ -140,12 +136,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    @Override
-    public void GotoOtherView(Activity activity) {
-        Intent intentMain=new Intent();
-        //intentMain.putExtra("user",user);
-        intentMain.setClass(MainActivity.this,activity.getClass());
-        MainActivity.this.startActivity(intentMain);
-    }
 }
 

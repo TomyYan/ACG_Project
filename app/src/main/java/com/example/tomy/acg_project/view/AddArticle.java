@@ -42,6 +42,9 @@ public class AddArticle extends AppCompatActivity implements View.OnClickListene
                 case "fail":
                     Toast.makeText(AddArticle.this, "发布失败", Toast.LENGTH_SHORT).show();
                     break;
+                case "hasSensitivity":
+                    Toast.makeText(AddArticle.this,"含有敏感词，请重新输入",Toast.LENGTH_SHORT).show();
+                    break;
                 default:
                     break;
             }
@@ -58,6 +61,7 @@ public class AddArticle extends AppCompatActivity implements View.OnClickListene
         publish.setOnClickListener(AddArticle.this);
         articleEdit=(EditText)findViewById(R.id.articleEdit);
         select_type=(RadioGroup)findViewById(R.id.select_type);
+        //select_type.check(R.id.select_a);
         select_type.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {

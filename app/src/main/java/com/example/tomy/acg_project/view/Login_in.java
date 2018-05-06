@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 import com.example.tomy.acg_project.R;
+import com.example.tomy.acg_project.UseTool.GetUserInfo;
 import com.example.tomy.acg_project.domain.Domain;
 import com.example.tomy.acg_project.domain.HttpCallbackListener;
 import com.example.tomy.acg_project.domain.HttpUnit;
@@ -107,7 +108,7 @@ public class Login_in extends Activity implements View.OnClickListener{
                 String result=responseMsg.getString("result");
 
                 Domain.setUserId(responseMsg.getInt("userId"));
-
+                new GetUserInfo().getUserInfo(responseMsg.getInt("userId"));
                 System.out.println(result);
                 //System.out.println(responseMsg.toString());
                 Message msg=new Message();
@@ -125,6 +126,7 @@ public class Login_in extends Activity implements View.OnClickListener{
                 */
                 //
                 Log.e("Login_in.java","Connect_Error");
+                //Toast.makeText(Login_in.this,"服务器炸啦*_*",Toast.LENGTH_SHORT).show();
             }
         });
     }

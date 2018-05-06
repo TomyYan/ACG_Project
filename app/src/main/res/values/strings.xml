@@ -17,11 +17,23 @@
     <string name="inputPassword">请输入密码</string>
     <string name="surePassword">确认密码：</string>
     <string name="inputPasswordAgain">请再次输入密码</string>
-    <string name="Email">邮箱</string>
+    <string name="Email">邮箱:</string>
     <string name="inputEmail">请输入邮箱</string>
     <string name="Name">用户名:</string>
     <string name="inputName">请输入用户名</string>
     <string name="publish">发表</string>
+    <string name="commentText">评论数为:0</string>
+    <string name="inputComment">请输入评论</string>
+    <string name="load">加载更多</string>
+    <string name="nickName">昵称:</string>
+    <string name="sex">性别:</string>
+    <string name="inputNick">请输入昵称</string>
+    <string name="inputSex">男/女</string>
+    <string name="accountImg">头像</string>
+    <string name="sign">个人签名:</string>
+    <string name="inputSign">请输入个人签名</string>
+    <string name="change">修改</string>
+    <string name="sure">确定</string>
 
 
 <!-- TODO: Remove or change this placeholder text -->
