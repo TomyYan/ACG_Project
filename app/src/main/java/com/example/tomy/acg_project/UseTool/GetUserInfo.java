@@ -31,7 +31,38 @@ public class GetUserInfo {
                 userInfo.setAccountSign(responseMsg.getString("accountSign"));
                 userInfo.setEmail(responseMsg.getString("email"));
                 userInfo.setUserName(responseMsg.getString("userName"));
+                userInfo.setIsAdmin(Integer.parseInt(responseMsg.getString("isAdmin")));
+                System.out.println("是否管理员:"+Integer.parseInt(responseMsg.getString("isAdmin")));
                 Domain.setUserInfo(userInfo);
+            }
+
+            @Override
+            public void onError(Exception e) {
+                Log.e("GetUserInfo.class","ConnectError");
+            }
+        });
+    }
+
+
+    public void getOtherUserInfo(int userId) {
+        JSONObject request = new JSONObject();
+        try {
+            request.put("userId",userId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        HttpUnit.postHttpRequest(request, address, new HttpCallbackListener() {
+            @Override
+            public void onFinish(String response) throws JSONException {
+                JSONObject responseMsg=new JSONObject(response);
+                User userInfo=new User();
+                userInfo.setAccount(responseMsg.getString("account"));
+                userInfo.setAccountImg(responseMsg.getString("accountImg"));
+                userInfo.setAccountSex(responseMsg.getString("accountSex"));
+                userInfo.setAccountSign(responseMsg.getString("accountSign"));
+                userInfo.setEmail(responseMsg.getString("email"));
+                userInfo.setUserName(responseMsg.getString("userName"));
+                Domain.setOtherInfo(userInfo);
             }
 
             @Override

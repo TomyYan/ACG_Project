@@ -68,37 +68,37 @@
         </LinearLayout>
         <ImageButton
                 android:id="@+id/imgButton"
+                android:background="@color/colorAccent"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_width="100dp"
-                android:layout_height="150dp"
+                android:layout_height="120dp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
                 app:srcCompat="@mipmap/ic_launcher"
                 android:contentDescription="@string/accountImg"
                 android:scaleType="fitCenter" tools:ignore="RtlHardcoded"/>
         <Button
-                android:id="@+id/change"
-                android:text="@string/change"
+                android:id="@+id/changeInfo"
+                android:text="@string/changeInfo"
                 android:background="@drawable/login_shape"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/imgButton"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 tools:ignore="RtlHardcoded"/>
         <Button
-                android:id="@+id/sure"
-                android:text="@string/sure"
-                android:visibility="gone"
+                android:id="@+id/changePassword"
+                android:text="@string/changePassword"
                 android:background="@drawable/login_shape"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_alignParentRight="true"
-                android:layout_below="@+id/imgButton"
+                android:layout_below="@+id/changeInfo"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 tools:ignore="RtlHardcoded"/>
         <LinearLayout
                 android:orientation="horizontal"

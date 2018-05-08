@@ -16,10 +16,13 @@ import android.view.animation.AlphaAnimation;
 import android.widget.*;
 import com.example.tomy.acg_project.R;
 import com.example.tomy.acg_project.UseTool.GetArticle;
+import com.example.tomy.acg_project.UseTool.ShowDeleteWindows;
 import com.example.tomy.acg_project.adapter.MyAdapter;
 import com.example.tomy.acg_project.domain.ArticleResponse;
 import com.example.tomy.acg_project.domain.Domain;
 import com.example.tomy.acg_project.domain.EndLessOnScrollListener;
+import com.example.tomy.acg_project.view.ChangePassword;
+import com.example.tomy.acg_project.view.ChangeUserInfo;
 import com.example.tomy.acg_project.view.DetailArticle;
 
 import java.util.ArrayList;
@@ -33,19 +36,22 @@ public class MeFragment extends Fragment implements View.OnClickListener{
 
     private AlphaAnimation mShowAnim, mHiddenAmin;//控件的显示和隐藏动画
 
+
     //监听器
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.change:
-//                change.setVisibility(View.GONE);
-//                sure.setVisibility(View.VISIBLE);
-//                setFocus();
+            case R.id.changeInfo:
                 //跳转到修改个人信息页面
+                Intent changeViewIntent=new Intent();
+                changeViewIntent.setClass(getActivity(), ChangeUserInfo.class);
+                getActivity().startActivity(changeViewIntent);
                 break;
-            case R.id.sure:
-//                sure.setVisibility(View.GONE);
-//                change.setVisibility(View.VISIBLE);
+            case R.id.changePassword:
+                //跳转到修改密码页面
+                Intent changePasswordViewIntent=new Intent();
+                changePasswordViewIntent.setClass(getActivity(),ChangePassword.class);
+                getActivity().startActivity(changePasswordViewIntent);
                 break;
             default:
                 break;
@@ -62,17 +68,17 @@ public class MeFragment extends Fragment implements View.OnClickListener{
             // 当不滚动时
             if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                 // 判断是否滚动到顶部
-                if (lastVisibleItem == 0) {
-                    me_top.startAnimation(mShowAnim);
-                    me_top.setVisibility(View.VISIBLE);
-                    System.out.println("到达顶部了");
-                }
+//                if (lastVisibleItem == 0) {
+//                    me_top.startAnimation(mShowAnim);
+//                    me_top.setVisibility(View.VISIBLE);
+//                    System.out.println("到达顶部了");
+//                }
             } else if (newState == RecyclerView.SCROLL_STATE_DRAGGING ) {//拖动中
-                if (me_top.getVisibility() == View.VISIBLE) {
-                    me_top.startAnimation(mHiddenAmin);
-                    me_top.setVisibility(View.INVISIBLE);
-                    System.out.println("滚动中...");
-                }
+//                if (me_top.getVisibility() == View.VISIBLE) {
+//                    me_top.startAnimation(mHiddenAmin);
+//                    me_top.setVisibility(View.INVISIBLE);
+//                    System.out.println("滚动中...");
+//                }
             }
         }
     }
@@ -88,7 +94,7 @@ public class MeFragment extends Fragment implements View.OnClickListener{
     private EditText accountInput,nickNameInput,sexInput,meEmailInput,meSignInput;
     private ImageButton imgButton;
     private RelativeLayout me_top;
-    private Button change,sure;
+    private Button changeInfo,changePassword;
 
 
     @Override
@@ -120,11 +126,11 @@ public class MeFragment extends Fragment implements View.OnClickListener{
         meEmailInput=(EditText)view.findViewById(R.id.meEmailInput);
         meSignInput=(EditText)view.findViewById(R.id.meSignInput);
         imgButton=(ImageButton)view.findViewById(R.id.imgButton);
-        change=(Button)view.findViewById(R.id.change);
-        sure=(Button)view.findViewById(R.id.sure);
+        changeInfo=(Button)view.findViewById(R.id.changeInfo);
+        changePassword=(Button)view.findViewById(R.id.changePassword);
         //设置按钮监听
-        change.setOnClickListener(this);
-        sure.setOnClickListener(this);
+        changeInfo.setOnClickListener(this);
+        changePassword.setOnClickListener(this);
         //初始化界面
         initUserInfo();
 
@@ -158,16 +164,19 @@ public class MeFragment extends Fragment implements View.OnClickListener{
             @Override
             public void onItemLongClick(View view) {
                 //Toast.makeText(activity,"您长点击了"+rv.getChildAdapterPosition(view)+"行",Toast.LENGTH_SHORT).show();
-                //
+                //弹出弹窗询问是否确定删除帖子界面
+                //记录点击信息
+                Domain.setArticleResponse(article.get(rv.getChildAdapterPosition(view)));
+                //显示对话框
+                new ShowDeleteWindows(activity).showIfDelete();
             }
 
         });
         //上拉加载更多
         rv.addOnScrollListener(new EndLessOnScrollListener(linearLayoutManager) {
             @Override public void onLoadMore(int currentPage) {
-                //loadMoreData();
                 Log.e("fragment.class","上拉"+start);
-
+                //加载数据
                 new GetArticle().getUserArticle(Domain.getUserId(),start);
             }
         });
@@ -185,6 +194,7 @@ public class MeFragment extends Fragment implements View.OnClickListener{
         return view;
     }
 
+    //更新recyclerView
     public static void updateView(ArticleResponse articleResponse){
         start++;
         article.add(articleResponse);
@@ -203,20 +213,5 @@ public class MeFragment extends Fragment implements View.OnClickListener{
         sexInput.setText(Domain.getUserInfo().getAccountSex());
         meEmailInput.setText(Domain.getUserInfo().getEmail());
         meSignInput.setText(Domain.getUserInfo().getAccountSign());
-    }
-
-    public void setFocus(){
-        nickNameInput.setFocusableInTouchMode(true);
-        sexInput.setFocusableInTouchMode(true);
-        meEmailInput.setFocusableInTouchMode(true);
-        meSignInput.setFocusableInTouchMode(true);
-        nickNameInput.setFocusable(true);
-        sexInput.setFocusable(true);
-        meEmailInput.setFocusable(true);
-        meSignInput.setFocusable(true);
-        nickNameInput.requestFocus();
-    }
-    public void lostFocus(){
-
     }
 }

@@ -97,7 +97,7 @@ public class Login_in extends Activity implements View.OnClickListener{
             return;
         }
         final JSONObject requestMsg=new JSONObject();
-        requestMsg.put("operation","login_in");
+        //requestMsg.put("operation","login_in");
         requestMsg.put("account",account);
         requestMsg.put("keyword",keyword);
         HttpUnit.postHttpRequest(requestMsg, address, new HttpCallbackListener() {
@@ -106,9 +106,10 @@ public class Login_in extends Activity implements View.OnClickListener{
                 JSONObject responseMsg=new JSONObject(response);
                 //处理登录返回信息
                 String result=responseMsg.getString("result");
-
-                Domain.setUserId(responseMsg.getInt("userId"));
-                new GetUserInfo().getUserInfo(responseMsg.getInt("userId"));
+                Domain.setUserId(Integer.parseInt(responseMsg.getString("userId")));
+                if(Domain.getUserId()!=0){
+                    new GetUserInfo().getUserInfo(Domain.getUserId());
+                }
                 System.out.println(result);
                 //System.out.println(responseMsg.toString());
                 Message msg=new Message();

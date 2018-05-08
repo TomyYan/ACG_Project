@@ -14,6 +14,15 @@ public class User implements Serializable{
     private String accountSex="";
     private String accountSign="";
     private String accountImg="";
+    private int isAdmin=0;
+
+    public int getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(int isAdmin) {
+        this.isAdmin = isAdmin;
+    }
 
     public String getUserName() {
         return userName;

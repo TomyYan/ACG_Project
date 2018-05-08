@@ -6,9 +6,18 @@ package com.example.tomy.acg_project.domain;
 public class Domain {
     //public static final String Server_Address="http://172.22.30.48:8080/";
     //public static final String Server_Address="http://192.168.43.144:8080/";
-    public static final String Server_Address="http://192.168.1.102:8080/";
+    public static final String Server_Address="http://192.168.1.101:8080/";
     private static int userId;
     private static User userInfo;
+    private static User otherInfo=new User();
+
+    public static User getOtherInfo() {
+        return otherInfo;
+    }
+
+    public static void setOtherInfo(User otherInfo) {
+        Domain.otherInfo = otherInfo;
+    }
 
     public static User getUserInfo() {
         return userInfo;

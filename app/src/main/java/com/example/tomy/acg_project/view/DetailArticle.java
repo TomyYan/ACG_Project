@@ -15,6 +15,7 @@ import android.widget.*;
 import com.example.tomy.acg_project.Fragment.AFragment;
 import com.example.tomy.acg_project.R;
 import com.example.tomy.acg_project.UseTool.GetComment;
+import com.example.tomy.acg_project.UseTool.GetUserInfo;
 import com.example.tomy.acg_project.adapter.CommentAdapter;
 import com.example.tomy.acg_project.adapter.MyAdapter;
 import com.example.tomy.acg_project.domain.CommentResponse;
@@ -110,13 +111,14 @@ public class DetailArticle extends AppCompatActivity implements View.OnClickList
         thumbsUpNum.setText(Domain.getArticleResponse().getThumbsUpNum()+"");
         thumbsDownNum.setText(Domain.getArticleResponse().getThumbsDownNum()+"");
 
+        imageShow.setOnClickListener(this);
         thumbsUpImg.setOnClickListener(this);
         thumbsDownImg.setOnClickListener(this);
         commentImg.setOnClickListener(this);
         publicComment.setOnClickListener(this);
 
-        System.out.println("获取文章ID为："+ Domain.getArticleResponse().getArticleId());
-        System.out.println("文章内容为:"+Domain.getArticleResponse().getArticle());
+        //System.out.println("获取文章ID为："+ Domain.getArticleResponse().getArticleId());
+        //System.out.println("文章内容为:"+Domain.getArticleResponse().getArticle());
 
         //Toast.makeText(this,"文章Id为：",Toast.LENGTH_SHORT).show();
         rv = (RecyclerView)findViewById(R.id.comment_view);
@@ -130,7 +132,11 @@ public class DetailArticle extends AppCompatActivity implements View.OnClickList
         commentAdapter = new CommentAdapter(new ArrayList<CommentResponse>());
         rv.setAdapter(commentAdapter);
         commentNum=0;
+
+        //
         new GetComment().getComment(Domain.getArticleResponse().getArticleId());
+        //
+        new GetUserInfo().getOtherUserInfo(Domain.getArticleResponse().getUserId());
     }
 
     public static void update(CommentResponse commentResponse){
@@ -172,6 +178,11 @@ public class DetailArticle extends AppCompatActivity implements View.OnClickList
                 else{
                     publicComment(Domain.getUserId(),Domain.getArticleResponse().getArticleId(),comment);
                 }
+                break;
+            case R.id.imageShow:
+                Intent otherInfoIntent=new Intent();
+                otherInfoIntent.setClass(DetailArticle.this,UserInfo.class);
+                DetailArticle.this.startActivity(otherInfoIntent);
                 break;
             default:
                 break;

@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import com.example.tomy.acg_project.R;
 import com.example.tomy.acg_project.UseTool.GetArticle;
+import com.example.tomy.acg_project.UseTool.ShowDeleteWindows;
 import com.example.tomy.acg_project.adapter.MyAdapter;
 import com.example.tomy.acg_project.domain.ArticleResponse;
 import com.example.tomy.acg_project.domain.Domain;
@@ -93,7 +94,13 @@ public class GFragment extends Fragment {
 
             @Override
             public void onItemLongClick(View view) {
-                Toast.makeText(activity,"您长点击了"+rv.getChildAdapterPosition(view)+"行",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(activity,"您长点击了"+rv.getChildAdapterPosition(view)+"行",Toast.LENGTH_SHORT).show();
+                if(Domain.getUserInfo().getIsAdmin()==1) {
+                    //记录点击信息
+                    Domain.setArticleResponse(article.get(rv.getChildAdapterPosition(view)));
+                    //显示对话框
+                    new ShowDeleteWindows(activity).showIfDelete();
+                }
             }
 
         });

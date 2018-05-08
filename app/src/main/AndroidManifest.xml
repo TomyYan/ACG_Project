@@ -26,6 +26,9 @@
         <activity android:name=".view.Register"></activity>
         <activity android:name=".view.ForgetPassword"></activity>
         <activity android:name=".view.DetailArticle"></activity>
+        <activity android:name=".view.ChangeUserInfo"></activity>
+        <activity android:name=".view.ChangePassword"></activity>
+        <activity android:name=".view.UserInfo"></activity>
 
     </application>
 

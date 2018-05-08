@@ -32,8 +32,16 @@
     <string name="accountImg">头像</string>
     <string name="sign">个人签名:</string>
     <string name="inputSign">请输入个人签名</string>
-    <string name="change">修改</string>
+    <string name="changeInfo">修改信息</string>
+    <string name="changePassword">修改密码</string>
     <string name="sure">确定</string>
+    <string name="nothing">wu</string>
+    <string name="oldPassword">旧密码:</string>
+    <string name="inputOldPassword">请输入旧密码</string>
+    <string name="newPassword">新密码:</string>
+    <string name="inputNewPassword">请输入新密码</string>
+    <string name="newPasswordAgain">再次输入:</string>
+    <string name="inputNewPasswordAgain">请再次输入新密码</string>
 
 
 <!-- TODO: Remove or change this placeholder text -->
