@@ -1,5 +1,6 @@
 package com.example.tomy.acg_project.UseTool;
 
+import android.content.ContentValues;
 import android.util.Log;
 import com.example.tomy.acg_project.domain.Domain;
 import com.example.tomy.acg_project.domain.HttpCallbackListener;
@@ -13,6 +14,7 @@ import org.json.JSONObject;
  */
 public class GetUserInfo {
     private static final String address= Domain.Server_Address+"getUserInfo";
+    private String getTokenAddress=Domain.Server_Address+"getToken";
     public void getUserInfo(int userId) {
         JSONObject request = new JSONObject();
         try {
@@ -34,6 +36,8 @@ public class GetUserInfo {
                 userInfo.setIsAdmin(Integer.parseInt(responseMsg.getString("isAdmin")));
                 System.out.println("是否管理员:"+Integer.parseInt(responseMsg.getString("isAdmin")));
                 Domain.setUserInfo(userInfo);
+                //获取token
+                send_token_get(Domain.getUserId(),Domain.getUserInfo().getAccount());
             }
 
             @Override
@@ -70,5 +74,37 @@ public class GetUserInfo {
                 Log.e("GetUserInfo.class","ConnectError");
             }
         });
+    }
+
+    public void send_token_get(int userId,String userAccount){
+        JSONObject requestMsg=new JSONObject();
+        try {
+            requestMsg.put("userId",userId);
+            requestMsg.put("userAccount",userAccount);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        HttpUnit.postHttpRequest(requestMsg, getTokenAddress, new HttpCallbackListener() {
+            @Override
+            public void onFinish(String response) throws JSONException {
+                System.out.println("接收到信息为:"+response);
+                JSONObject responseMsg=new JSONObject(response);
+                String result=responseMsg.getString("data");
+                System.out.println("获取token为:"+result);
+                updateSQLite(result);
+            }
+
+            @Override
+            public void onError(Exception e) {
+                Log.e("getToken","ErrorConnect");
+            }
+        });
+    }
+
+    public void updateSQLite(String token){
+        //SQLiteDatabase db = mySql.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("token",token);
+        Domain.getDb().update("token_table",values,"id=?",new String[]{"1"});
     }
 }

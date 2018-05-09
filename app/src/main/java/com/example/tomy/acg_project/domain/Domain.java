@@ -1,5 +1,7 @@
 package com.example.tomy.acg_project.domain;
 
+import android.database.sqlite.SQLiteDatabase;
+
 /**
  * Created by tomy on 18-3-9.
  */
@@ -10,7 +12,23 @@ public class Domain {
     private static int userId;
     private static User userInfo;
     private static User otherInfo=new User();
+    private static SQLiteDatabase db;
+    private static String tokenSQL="";
 
+    public static String getToken() {
+        return tokenSQL;
+    }
+
+    public static void setToken(String tokenSQL) {
+        Domain.tokenSQL = tokenSQL;
+    }
+    public static SQLiteDatabase getDb() {
+        return db;
+    }
+
+    public static void setDb(SQLiteDatabase db) {
+        Domain.db = db;
+    }
     public static User getOtherInfo() {
         return otherInfo;
     }

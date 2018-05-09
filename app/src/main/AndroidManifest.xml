@@ -29,6 +29,8 @@
         <activity android:name=".view.ChangeUserInfo"></activity>
         <activity android:name=".view.ChangePassword"></activity>
         <activity android:name=".view.UserInfo"></activity>
+        <activity android:name=".view.HadPublic"></activity>
+        <activity android:name=".view.HadComment"></activity>
 
     </application>
 

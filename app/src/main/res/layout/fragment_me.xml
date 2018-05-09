@@ -137,11 +137,31 @@
                     android:id="@+id/meSignInput"
                     android:focusable="false"
                     android:hint="@string/inputSign"
-
+                    android:gravity="top"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="150dp"/>
         </LinearLayout>
     </RelativeLayout>
+    <LinearLayout
+            android:layout_margin="10dp"
+            android:background="@color/blue"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <Button
+                android:id="@+id/hadPublic"
+                android:layout_weight="1"
+                android:text="@string/hadPublish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        <Button
+                android:id="@+id/hadComment"
+                android:layout_weight="1"
+                android:text="@string/hadComment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <!--
     <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/me_swipe_refresh_layout"
             android:layout_margin="10dp"
@@ -153,5 +173,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
     </android.support.v4.widget.SwipeRefreshLayout>
+    -->
 </LinearLayout>
 

@@ -42,6 +42,8 @@
     <string name="inputNewPassword">请输入新密码</string>
     <string name="newPasswordAgain">再次输入:</string>
     <string name="inputNewPasswordAgain">请再次输入新密码</string>
+    <string name="hadPublish">已发布</string>
+    <string name="hadComment">已评论</string>
 
 
 <!-- TODO: Remove or change this placeholder text -->
