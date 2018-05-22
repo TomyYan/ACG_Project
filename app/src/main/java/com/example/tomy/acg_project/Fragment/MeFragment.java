@@ -2,6 +2,8 @@ package com.example.tomy.acg_project.Fragment;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -21,14 +23,19 @@ import com.example.tomy.acg_project.adapter.MyAdapter;
 import com.example.tomy.acg_project.domain.ArticleResponse;
 import com.example.tomy.acg_project.domain.Domain;
 import com.example.tomy.acg_project.domain.EndLessOnScrollListener;
+import com.example.tomy.acg_project.domain.updataPhoto;
 import com.example.tomy.acg_project.view.*;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
  * Created by tomy on 18-3-5.
  */
-public class MeFragment extends Fragment implements View.OnClickListener{
+public class MeFragment extends Fragment implements View.OnClickListener,updataPhoto {
     public MeFragment() {
     }
 
@@ -61,35 +68,17 @@ public class MeFragment extends Fragment implements View.OnClickListener{
                 hadCommentIntent.setClass(getActivity(), HadComment.class);
                 getActivity().startActivity(hadCommentIntent);
                 break;
+            case R.id.setting:
+                Intent settingIntent=new Intent();
+                settingIntent.setClass(getActivity(),Setting.class);
+                Domain.setMainActivity(getActivity());
+                getActivity().startActivity(settingIntent);
+                break;
             default:
                 break;
         }
     }
 
-    //滑动监听
-//    private class MyRecyclerViewScrollListener extends RecyclerView.OnScrollListener {
-//        @Override
-//        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-//            super.onScrollStateChanged(recyclerView, newState);
-//            LinearLayoutManager manager = (LinearLayoutManager) recyclerView.getLayoutManager();
-//            int lastVisibleItem = manager.findLastCompletelyVisibleItemPosition();//获取最后一个完全显示的ItemPosition
-//            // 当不滚动时
-//            if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-//                // 判断是否滚动到顶部
-////                if (lastVisibleItem == 0) {
-////                    me_top.startAnimation(mShowAnim);
-////                    me_top.setVisibility(View.VISIBLE);
-////                    System.out.println("到达顶部了");
-////                }
-//            } else if (newState == RecyclerView.SCROLL_STATE_DRAGGING ) {//拖动中
-////                if (me_top.getVisibility() == View.VISIBLE) {
-////                    me_top.startAnimation(mHiddenAmin);
-////                    me_top.setVisibility(View.INVISIBLE);
-////                    System.out.println("滚动中...");
-////                }
-//            }
-//        }
-//    }
     //成员变量
     private LinearLayoutManager linearLayoutManager;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -102,7 +91,8 @@ public class MeFragment extends Fragment implements View.OnClickListener{
     private EditText accountInput,nickNameInput,sexInput,meEmailInput,meSignInput;
     private ImageButton imgButton;
     private RelativeLayout me_top;
-    private Button changeInfo,changePassword,hadPublic,hadComment;
+    private Button changeInfo,changePassword,hadPublic,hadComment,setting;
+    private Bitmap img;
 
 
     @Override
@@ -117,6 +107,8 @@ public class MeFragment extends Fragment implements View.OnClickListener{
         //获取主线程活动
         activity=getActivity();
         view = inflater.inflate(R.layout.fragment_me, container,false);
+
+        Domain.updata=this;
 
         //控件显示的动画
         mShowAnim = new AlphaAnimation(0.0f, 1.0f);
@@ -138,13 +130,19 @@ public class MeFragment extends Fragment implements View.OnClickListener{
         changePassword=(Button)view.findViewById(R.id.changePassword);
         hadPublic=(Button)view.findViewById(R.id.hadPublic);
         hadComment=(Button)view.findViewById(R.id.hadComment);
+        setting=(Button)view.findViewById(R.id.setting);
         //设置按钮监听
         changeInfo.setOnClickListener(this);
         changePassword.setOnClickListener(this);
         hadPublic.setOnClickListener(this);
         hadComment.setOnClickListener(this);
+        setting.setOnClickListener(this);
         //初始化界面
         initUserInfo();
+        if(Domain.img!=null){
+            imgButton.setImageBitmap(Domain.img);
+        }
+
 
 //        swipeRefreshLayout=(SwipeRefreshLayout)view.findViewById(R.id.me_swipe_refresh_layout);
 //        rv = (RecyclerView) view.findViewById(R.id.me_recycler_view);
@@ -218,6 +216,7 @@ public class MeFragment extends Fragment implements View.OnClickListener{
 //        });
 //    }
 
+
     //设置用户信息
     public void initUserInfo(){
         accountInput.setText(Domain.getUserInfo().getAccount());
@@ -225,5 +224,24 @@ public class MeFragment extends Fragment implements View.OnClickListener{
         sexInput.setText(Domain.getUserInfo().getAccountSex());
         meEmailInput.setText(Domain.getUserInfo().getEmail());
         meSignInput.setText(Domain.getUserInfo().getAccountSign());
+    }
+
+    @Override
+    public void updataPhoto() {
+        if(Domain.updata!=null){
+            try{
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(Domain.img!=null){
+                            imgButton.setImageBitmap(Domain.img);
+                        }
+                        initUserInfo();
+                    }
+                });
+            }catch (Exception e){
+
+            }
+        }
     }
 }

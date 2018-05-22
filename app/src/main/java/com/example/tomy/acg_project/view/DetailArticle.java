@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.*;
 import com.example.tomy.acg_project.Fragment.AFragment;
 import com.example.tomy.acg_project.R;
@@ -167,6 +168,11 @@ public class DetailArticle extends AppCompatActivity implements View.OnClickList
             case R.id.commentImg:
                 //评论
                 commentLinear.setVisibility(1);
+                //获取焦点
+                commentEdit.setFocusable(true);
+                commentEdit.setFocusableInTouchMode(true);
+                commentEdit.requestFocus();
+                //activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
                 //rv.setVisibility(-1);
                 break;
             case R.id.publicComment:

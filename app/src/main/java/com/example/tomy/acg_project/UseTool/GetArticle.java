@@ -12,6 +12,7 @@ import com.example.tomy.acg_project.domain.HttpCallbackListener;
 import com.example.tomy.acg_project.domain.HttpUnit;
 import com.example.tomy.acg_project.view.HadComment;
 import com.example.tomy.acg_project.view.HadPublic;
+import com.example.tomy.acg_project.view.UserInfo;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -81,53 +82,53 @@ public class GetArticle {
         });
         return;
     }
-//    public void getUserArticle(int userId, int start){
-//        JSONObject request = new JSONObject();
-//        try {
-//            request.put("userId",userId);
-//            request.put("start",start);
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//
-//        HttpUnit.postHttpRequest(request, addressUserArticle, new HttpCallbackListener() {
-//            @Override
-//            public void onFinish(String response) throws JSONException {
-//                System.out.println("获取文章得到："+response);
-//                //JSONObject responseMsg=new JSONObject(response);
-//                //JSONArray responseMsg=new JSONArray(response);
-//                JSONObject responseData=new JSONObject(response);
-//                //System.out.println(responseMsg.get(0));
-//                JSONArray articleMsg=new JSONArray(responseData.getString("data"));
-//                //System.out.println("文章内容为："+articleMsg.get(0));
-//                for(int i=0;i<articleMsg.length();i++){
-//                    System.out.println("次数"+articleMsg.length());
-//                    JSONObject articleUnit=new JSONObject(articleMsg.get(i).toString());
-//                    ArticleResponse articleResponse=new ArticleResponse();
-//                    articleResponse.setArticle(articleUnit.getString("article"));
-//                    articleResponse.setArticleId(articleUnit.getInt("articleId"));
-//                    articleResponse.setThumbsDownNum(Integer.parseInt(articleUnit.getString("thumbsDownNum")));
-//                    articleResponse.setThumbsUpNum(Integer.parseInt(articleUnit.getString("thumbsUpNum")));
-//                    articleResponse.setUserId(Integer.parseInt(articleUnit.getString("userId")));
-//                    articleResponse.setUserName(articleUnit.getString("userName"));
-//                    //article.add(articleResponse);
-//
-//                    MeFragment.updateView(articleResponse);
-//                    //HadPublic.updateView(articleResponse);
-//
-//                    System.out.println("加载...");
-//                }
-//                //System.out.println("文章长度为:"+article.size());
-//                //adapter.updateData(article);
-//            }
-//
-//            @Override
-//            public void onError(Exception e) {
-//                Log.e("GetArticle.class","connectError");
-//            }
-//        });
-//        return;
-//    }
+    public void getUserArticle(int userId, int start){
+        JSONObject request = new JSONObject();
+        try {
+            request.put("userId",userId);
+            request.put("start",start);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        HttpUnit.postHttpRequest(request, addressUserArticle, new HttpCallbackListener() {
+            @Override
+            public void onFinish(String response) throws JSONException {
+                System.out.println("获取文章得到："+response);
+                //JSONObject responseMsg=new JSONObject(response);
+                //JSONArray responseMsg=new JSONArray(response);
+                JSONObject responseData=new JSONObject(response);
+                //System.out.println(responseMsg.get(0));
+                JSONArray articleMsg=new JSONArray(responseData.getString("data"));
+                //System.out.println("文章内容为："+articleMsg.get(0));
+                for(int i=0;i<articleMsg.length();i++){
+                    System.out.println("次数"+articleMsg.length());
+                    JSONObject articleUnit=new JSONObject(articleMsg.get(i).toString());
+                    ArticleResponse articleResponse=new ArticleResponse();
+                    articleResponse.setArticle(articleUnit.getString("article"));
+                    articleResponse.setArticleId(articleUnit.getInt("articleId"));
+                    articleResponse.setThumbsDownNum(Integer.parseInt(articleUnit.getString("thumbsDownNum")));
+                    articleResponse.setThumbsUpNum(Integer.parseInt(articleUnit.getString("thumbsUpNum")));
+                    articleResponse.setUserId(Integer.parseInt(articleUnit.getString("userId")));
+                    articleResponse.setUserName(articleUnit.getString("userName"));
+                    //article.add(articleResponse);
+
+                    UserInfo.updateView(articleResponse);
+                    //HadPublic.updateView(articleResponse);
+
+                    System.out.println("加载...");
+                }
+                //System.out.println("文章长度为:"+article.size());
+                //adapter.updateData(article);
+            }
+
+            @Override
+            public void onError(Exception e) {
+                Log.e("GetArticle.class","connectError");
+            }
+        });
+        return;
+    }
     public void getPublicArticle(int userId, int start){
         JSONObject request = new JSONObject();
         try {

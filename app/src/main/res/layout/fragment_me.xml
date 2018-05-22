@@ -2,6 +2,14 @@
               xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
+    <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollbars="none" >
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
     <RelativeLayout
             android:id="@+id/me_top"
             android:layout_width="match_parent"
@@ -139,7 +147,7 @@
                     android:hint="@string/inputSign"
                     android:gravity="top"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"/>
+                    android:layout_height="130dp"/>
         </LinearLayout>
     </RelativeLayout>
     <LinearLayout
@@ -161,6 +169,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
     </LinearLayout>
+    <Button
+            android:text="@string/setting"
+            android:id="@+id/setting"
+            android:background="@drawable/login_shape"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"/>
     <!--
     <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/me_swipe_refresh_layout"
@@ -174,5 +191,8 @@
                 android:layout_height="wrap_content"/>
     </android.support.v4.widget.SwipeRefreshLayout>
     -->
+
+            </LinearLayout>
+    </ScrollView>
 </LinearLayout>
 

@@ -35,7 +35,7 @@
     <string name="changeInfo">修改信息</string>
     <string name="changePassword">修改密码</string>
     <string name="sure">确定</string>
-    <string name="nothing">wu</string>
+    <string name="nothing">无</string>
     <string name="oldPassword">旧密码:</string>
     <string name="inputOldPassword">请输入旧密码</string>
     <string name="newPassword">新密码:</string>
@@ -44,6 +44,8 @@
     <string name="inputNewPasswordAgain">请再次输入新密码</string>
     <string name="hadPublish">已发布</string>
     <string name="hadComment">已评论</string>
+    <string name="setting">设置</string>
+    <string name="exit">注销</string>
 
 
 <!-- TODO: Remove or change this placeholder text -->

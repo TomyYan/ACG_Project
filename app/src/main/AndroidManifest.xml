@@ -3,6 +3,7 @@
           package="com.example.tomy.acg_project">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
             android:allowBackup="true"
@@ -31,6 +32,7 @@
         <activity android:name=".view.UserInfo"></activity>
         <activity android:name=".view.HadPublic"></activity>
         <activity android:name=".view.HadComment"></activity>
+        <activity android:name=".view.Setting"></activity>
 
     </application>
 

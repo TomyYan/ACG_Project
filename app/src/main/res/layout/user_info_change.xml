@@ -17,6 +17,7 @@
         <EditText
                 android:id="@+id/accountInput"
                 android:hint="@string/inputAccount"
+                android:focusable="false"
                 android:layout_width="wrap_content"
                 android:minWidth="200dp"
                 android:layout_height="wrap_content"/>
@@ -103,10 +104,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         <EditText
+                android:gravity="start"
                 android:id="@+id/meSignInput"
                 android:hint="@string/inputSign"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="150dp"/>
     </LinearLayout>
     <Button
             android:layout_below="@+id/meSignLinear"

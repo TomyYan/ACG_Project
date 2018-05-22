@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -61,6 +62,12 @@ public class AddArticle extends AppCompatActivity implements View.OnClickListene
         publish.setOnClickListener(AddArticle.this);
         articleEdit=(EditText)findViewById(R.id.articleEdit);
         select_type=(RadioGroup)findViewById(R.id.select_type);
+        //多行显示
+        articleEdit.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+        //改变默认的单行模式
+        articleEdit.setSingleLine(false);
+        //水平滚动设置为False
+        articleEdit.setHorizontallyScrolling(false);
         //select_type.check(R.id.select_a);
         select_type.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override

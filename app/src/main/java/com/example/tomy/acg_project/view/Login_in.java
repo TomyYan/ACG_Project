@@ -82,7 +82,7 @@ public class Login_in extends Activity implements View.OnClickListener{
         //使用SQLite查询token
         Cursor token;
         Domain.setDb(SQLiteDatabase.openOrCreateDatabase(this.getFilesDir().toString()+"my.db3",null));
-
+        Domain.setFilePath(this.getFilesDir().toString());
         try {
             token = Domain.getDb().rawQuery("select token from token_table where id=1", null);
             System.out.println("正确");
